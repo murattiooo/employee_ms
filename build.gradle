@@ -1,0 +1,39 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.4.RELEASE'
+    id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.fs.employeems'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+
+    // web
+    implementation('org.springframework.boot:spring-boot-starter-web') {
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
+    }
+
+    implementation('org.springframework.boot:spring-boot-starter-validation')
+    implementation('io.springfox:springfox-swagger2:2.9.2') {
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-annotations'
+        exclude group: 'com.google.guava', module: 'guava'
+    }
+    implementation('com.google.guava:guava:27.0-jre')
+    implementation('io.springfox:springfox-swagger-ui:2.9.2')
+
+    // data
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation('com.vladmihalcea:hibernate-types-52:2.4.1')
+    implementation('org.apache.ant:ant:1.10.5')
+    runtimeOnly('org.postgresql:postgresql')
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
