@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-department-table
+      author: Murad Ibrahimli
+      changes:
+        - createTable:
+            tableName: tbl_department
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(32)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(64)
+                  constraints:
+                    nullable: true
+            remarks: Table to store  department data
+
+
+
+
+
+
