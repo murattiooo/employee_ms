@@ -11,6 +11,8 @@ spring:
         jdbc:
           lob:
             non_contextual_creation : true
+  liquibase:
+    change-log: classpath:liquibase/changelog-master.yml
 ms:
   url: /employee-ms
 

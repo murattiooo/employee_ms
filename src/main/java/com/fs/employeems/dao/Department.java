@@ -5,15 +5,17 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tbl_department")
 public class Department {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "description")
     private String description;
-
 
     public Long getId() {
         return id;

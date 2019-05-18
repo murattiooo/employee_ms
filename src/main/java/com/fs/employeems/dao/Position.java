@@ -5,8 +5,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tbl_position")
 public class Position {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     @Column(name = "name")
