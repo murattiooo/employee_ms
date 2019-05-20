@@ -20,11 +20,11 @@ public class Employee {
     @Column(name = "patronymic")
     private String patronymic;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "department_id",referencedColumnName = "id")
     private Department department;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "position_id",referencedColumnName = "id")
     private Position position;
 
@@ -32,7 +32,7 @@ public class Employee {
     private LocalDate birthDate;
 
     @Column(name = "birth_place")
-    private String birtPlace;
+    private String birthPlace;
 
     public Long getId() {
         return id;
@@ -82,6 +82,9 @@ public class Employee {
         this.position = position;
     }
 
+
+
+
     public LocalDate getBirthDate() {
         return birthDate;
     }
@@ -90,11 +93,12 @@ public class Employee {
         this.birthDate = birthDate;
     }
 
-    public String getBirtPlace() {
-        return birtPlace;
+    public String getBirthPlace() {
+        return birthPlace;
     }
 
-    public void setBirtPlace(String birtPlace) {
-        this.birtPlace = birtPlace;
+    public void setBirthPlace(String birthPlace) {
+        this.birthPlace = birthPlace;
     }
+
 }

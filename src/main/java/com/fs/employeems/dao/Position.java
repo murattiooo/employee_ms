@@ -15,6 +15,9 @@ public class Position {
     @Column(name="description")
     private String description;
 
+    @OneToOne(mappedBy = "position")
+    private Employee employee;
+
 
     public Long getId() {
         return id;
@@ -38,5 +41,13 @@ public class Position {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }
