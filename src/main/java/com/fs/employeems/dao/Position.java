@@ -10,13 +10,14 @@ public class Position {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
     @Column(name = "name")
     private String name;
+
     @Column(name="description")
     private String description;
 
-    @OneToOne(mappedBy = "position")
-    private Employee employee;
+
 
 
     public Long getId() {
@@ -43,11 +44,5 @@ public class Position {
         this.description = description;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
 }

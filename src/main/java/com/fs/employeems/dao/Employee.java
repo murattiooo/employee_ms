@@ -1,6 +1,7 @@
 package com.fs.employeems.dao;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -11,6 +12,7 @@ public class Employee {
     @Column(name = "id")
     private Long id;
 
+    @NotNull
     @Column(name = "name")
     private String name;
 
@@ -20,12 +22,13 @@ public class Employee {
     @Column(name = "patronymic")
     private String patronymic;
 
-    @OneToOne
-    @JoinColumn(name = "department_id",referencedColumnName = "id")
-    private Department department;
 
-    @OneToOne
-    @JoinColumn(name = "position_id",referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "department_id", referencedColumnName = "id")
+    private  Department department;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "position_id", referencedColumnName = "id")
     private Position position;
 
     @Column(name = "birth_date")
@@ -66,13 +69,6 @@ public class Employee {
         this.patronymic = patronymic;
     }
 
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
 
     public Position getPosition() {
         return position;
@@ -81,8 +77,6 @@ public class Employee {
     public void setPosition(Position position) {
         this.position = position;
     }
-
-
 
 
     public LocalDate getBirthDate() {
@@ -101,4 +95,11 @@ public class Employee {
         this.birthPlace = birthPlace;
     }
 
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 }
