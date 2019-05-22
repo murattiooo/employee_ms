@@ -1,17 +1,12 @@
 package com.fs.employeems.controller;
 
-import com.fs.employeems.dao.Department;
 import com.fs.employeems.dao.Employee;
-import com.fs.employeems.dao.Position;
-import com.fs.employeems.service.DepartmentService;
 import com.fs.employeems.service.EmployeeService;
-import com.fs.employeems.service.PositionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -25,16 +20,31 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
 
-    @PostMapping("/add-employee")
+    @PostMapping("/add-emp")
     public Employee addEmployee(@RequestBody final Employee employee) {
         return employeeService.addEmployee(employee);
     }
 
 
-    @GetMapping("/get-employees")
+    @GetMapping("/get-emp")
     public List<Employee> getAllEmployee() {
-        List<Employee> employeeList = new ArrayList<>();
-        employeeList.addAll(employeeService.getALlEmployee());
-        return employeeList;
+        return employeeService.getALlEmployee();
+    }
+
+
+    @DeleteMapping("/delete-emp/{id}")
+    public void deleteEmployee(@PathVariable Long id){
+         employeeService.deleteEmployee(id);
+
+    }
+    @GetMapping("/findEmpByNameAndSurname/{name}/{surname}")
+    public List<Employee> findByNameAndSurname(@PathVariable String name, @PathVariable String surname) {
+        return employeeService.findByNameAndSurname(name,surname);
+    }
+
+    @PutMapping("/update-emp")
+    public ResponseEntity<Employee> updatePosition(@RequestBody  Employee employee){
+        employeeService.updateEmployee(employee);
+        return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 }
