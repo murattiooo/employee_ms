@@ -5,6 +5,8 @@ import com.fs.employeems.dao.PositionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PositionServiceImpl implements PositionService {
 
@@ -14,6 +16,25 @@ public class PositionServiceImpl implements PositionService {
     @Override
     public Position addPosition(Position position) {
         return positionRepository.save(position);
-
     }
+
+    @Override
+    public List<Position> getAllPosition(){
+        return positionRepository.findAll();
+    }
+    @Override
+    public void  deletePosition(Long id){
+        positionRepository.deleteById(id);
+    }
+    @Override
+    public List<Position>findByName(String name)
+    {
+       return positionRepository.findByName(name);
+    }
+
+    @Override
+    public Position updatePosition(Position position){
+        return  positionRepository.save(position);
+    }
+
 }

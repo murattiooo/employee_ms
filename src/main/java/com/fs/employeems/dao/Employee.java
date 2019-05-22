@@ -1,6 +1,7 @@
 package com.fs.employeems.dao;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -11,6 +12,7 @@ public class Employee {
     @Column(name = "id")
     private Long id;
 
+    @NotNull
     @Column(name = "name")
     private String name;
 
@@ -20,19 +22,20 @@ public class Employee {
     @Column(name = "patronymic")
     private String patronymic;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "department_id",referencedColumnName = "id")
-    private Department department;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "position_id",referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "department_id", referencedColumnName = "id")
+    private  Department department;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "position_id", referencedColumnName = "id")
     private Position position;
 
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
     @Column(name = "birth_place")
-    private String birtPlace;
+    private String birthPlace;
 
     public Long getId() {
         return id;
@@ -66,13 +69,6 @@ public class Employee {
         this.patronymic = patronymic;
     }
 
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
 
     public Position getPosition() {
         return position;
@@ -82,6 +78,7 @@ public class Employee {
         this.position = position;
     }
 
+
     public LocalDate getBirthDate() {
         return birthDate;
     }
@@ -90,11 +87,19 @@ public class Employee {
         this.birthDate = birthDate;
     }
 
-    public String getBirtPlace() {
-        return birtPlace;
+    public String getBirthPlace() {
+        return birthPlace;
     }
 
-    public void setBirtPlace(String birtPlace) {
-        this.birtPlace = birtPlace;
+    public void setBirthPlace(String birthPlace) {
+        this.birthPlace = birthPlace;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }

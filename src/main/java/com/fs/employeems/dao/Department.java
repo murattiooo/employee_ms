@@ -17,6 +17,7 @@ public class Department {
     @Column(name = "description")
     private String description;
 
+
     public Long getId() {
         return id;
     }
@@ -40,4 +41,6 @@ public class Department {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 }

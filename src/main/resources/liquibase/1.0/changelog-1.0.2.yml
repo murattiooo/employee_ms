@@ -1,0 +1,51 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-employee-table
+      author: Murad Ibrahimli
+      changes:
+        - createTable:
+            tableName: tbl_employee
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: surname
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: patronymic
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: department_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: position_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: birth_date
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: birth_place
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+            remarks: Table to store  employee data
