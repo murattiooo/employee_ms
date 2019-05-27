@@ -7,13 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping(path = "${ms.url}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+@RequestMapping(path = "${ms.url}", produces = APPLICATION_JSON_VALUE)
 public class PositionController {
 
     @Autowired
@@ -21,17 +21,16 @@ public class PositionController {
 
 
     @PostMapping("/add-pos")
-    public Position addPosition(@RequestBody final Position position) {
+    public Position addPosition(@RequestBody final @Valid Position position) {
         return positionService.addPosition(position);
 
     }
     @GetMapping("/get-pos")
     public List<Position> getAllPosition() {
-        List<Position> positionList = new ArrayList<>();
-        positionList.addAll(positionService.getAllPosition());
-        return positionList;
+        return positionService.getAllPosition();
     }
-    @GetMapping("/delete-pos/{id}")
+
+    @DeleteMapping("/delete-pos/{id}")
     public void deletePosition(@PathVariable  Long id){
         positionService.deletePosition(id);
     }
@@ -44,6 +43,6 @@ public class PositionController {
     @PutMapping("/update-pos")
     public ResponseEntity<Position> updatePosition(@RequestBody  Position position){
         positionService.updatePosition(position);
-        return new ResponseEntity<Position>(position, HttpStatus.OK);
+        return new ResponseEntity<>(position, HttpStatus.OK);
     }
 }

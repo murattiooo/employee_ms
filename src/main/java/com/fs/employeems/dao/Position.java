@@ -1,6 +1,7 @@
 package com.fs.employeems.dao;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tbl_position")
@@ -11,6 +12,7 @@ public class Position {
     @Column(name = "id")
     private Long id;
 
+    @NotNull
     @Column(name = "name")
     private String name;
 
